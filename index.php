@@ -17,14 +17,14 @@
         <form method="post" action="index.php">
             <?php include('errors.php'); ?>
                 <label for="role" class="form-label">I am a:</label>
-                <select class="form-control" name="roles">
+                <select class="form-control" name="role">
                     <option value="none" disabled> choose 1</option>
                     <option value="Student">Student</option>
                     <option value="Tutor">Tutor</option>
                     
                 </select>
                 <label for="username" class="form-label">Input your first name</label>
-                <input type="text" class="form-control" name="username">
+                <input type="text" class="form-control" name="fname">
                 <label for="password" class="form-label">password</label>
                 <input type="password" class="form-control" name="password">
                 

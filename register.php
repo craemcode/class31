@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register with Us</title>
+    <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body style="padding: 5%">
@@ -22,7 +22,7 @@
 
 
             <label for="role" class="form-label">I am a:</label>
-            <select class="form-control" name="roles">
+            <select class="form-control" name="role">
                 <option value="none" disabled> choose 1</option>
                 <option value="Student">Student</option>
                 <option value="Tutor">Tutor</option>
