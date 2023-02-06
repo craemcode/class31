@@ -19,7 +19,7 @@ if (isset($_POST["register"])) {
   // receive all input values from the form
   $fname = mysqli_real_escape_string($db, $_POST['fname']);
   $lname = mysqli_real_escape_string($db, $_POST['lname']);
-  $role = mysqli_real_escape_string($db, $_POST['role']);
+  //$role = mysqli_real_escape_string($db, $_POST['role']);
   //$username = mysqli_real_escape_string($db, $_POST['role']);
   //$course = mysqli_real_escape_string($db, $_POST['course']);
   $password_1 = mysqli_real_escape_string($db, $_POST['pass1']);
@@ -35,7 +35,6 @@ if (isset($_POST["register"])) {
   if ($password_1 != $password_2) {
 	array_push($errors, "The two passwords do not match");
   }
-  echo "we wre okay. here is $role";
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
   switch (strtolower($role)){
@@ -52,7 +51,7 @@ if (isset($_POST["register"])) {
       $user = mysqli_fetch_assoc($result);
       break;
     default:
-      array_push($errors, "Could not confirm user!");
+      array_push($errors, "Could not register user!");
     }
 
   
