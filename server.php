@@ -35,7 +35,6 @@ if (isset($_POST["register"])) {
   if ($password_1 != $password_2) {
 	array_push($errors, "The two passwords do not match");
   }
-  echo "we wre okay. here is $role";
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
   switch (strtolower($role)){
@@ -52,7 +51,7 @@ if (isset($_POST["register"])) {
       $user = mysqli_fetch_assoc($result);
       break;
     default:
-      array_push($errors, "Could not confirm user!");
+      array_push($errors, "Could not register user!");
     }
 
   
@@ -72,7 +71,7 @@ if (isset($_POST["register"])) {
             VALUES('$fname','$lname','$password_hash')";
       mysqli_query($db, $query);
       
-      header('location: login.php');
+      header('location: index.php');
 
     }elseif(strtolower($role)=="tutor"){
         $query = "INSERT INTO teachers (fname, lname, password) 
@@ -82,8 +81,8 @@ if (isset($_POST["register"])) {
         $_SESSION['fname'] = $fname;
         header('location: index.php');
   	
+    }
   }
-}
 }
 
 // LOGIN USER
@@ -107,7 +106,12 @@ if (isset($_POST["login"])) {
         $query = "SELECT * FROM students WHERE fname='$fname'";
         $result = mysqli_query($db, $query);
         $user = mysqli_fetch_assoc($result);
-        $password_hash = $user['password'];
+        if($user != NULL){
+          
+          $password_hash = $user['password'];
+        }else{array_push($errors, "Please choose the right role or register");
+          break;
+        }
 
         if (password_verify($password,$password_hash)){   
     
@@ -123,7 +127,13 @@ if (isset($_POST["login"])) {
         $query = "SELECT * FROM teachers WHERE fname='$fname'";
         $result = mysqli_query($db, $query);
         $user = mysqli_fetch_assoc($result);
-        $password_hash = $user['password'];
+        if($user != NULL){
+          
+          $password_hash = $user['password'];
+        }else{array_push($errors, "Please choose the right role or register");
+          break;
+        }
+        
 
         if (password_verify($password,$password_hash)){   
     
