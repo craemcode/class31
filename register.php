@@ -23,7 +23,7 @@
 
 
             <label for="role" class="form-label">I am a:</label>
-            <select class="form-control" name="roles">
+            <select class="form-control" name="role">
                 <option value="none" disabled> choose 1</option>
                 <option value="Student">Student</option>
                 <option value="Tutor">Tutor</option>

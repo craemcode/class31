@@ -15,11 +15,11 @@ $password_hash=NULL;
 
 
 // REGISTER USER
-if (isset($_POST["register"]) && $_POST['role']!= NULL) {
+if (isset($_POST["register"])) {
   // receive all input values from the form
   $fname = mysqli_real_escape_string($db, $_POST['fname']);
   $lname = mysqli_real_escape_string($db, $_POST['lname']);
-  //$role = mysqli_real_escape_string($db, $_POST['role']);
+  $role = mysqli_real_escape_string($db, $_POST['role']);
   //$username = mysqli_real_escape_string($db, $_POST['role']);
   //$course = mysqli_real_escape_string($db, $_POST['course']);
   $password_1 = mysqli_real_escape_string($db, $_POST['pass1']);
@@ -71,7 +71,7 @@ if (isset($_POST["register"]) && $_POST['role']!= NULL) {
             VALUES('$fname','$lname','$password_hash')";
       mysqli_query($db, $query);
       
-      header('location: login.php');
+      header('location: index.php');
 
     }elseif(strtolower($role)=="tutor"){
         $query = "INSERT INTO teachers (fname, lname, password) 
@@ -81,12 +81,12 @@ if (isset($_POST["register"]) && $_POST['role']!= NULL) {
         $_SESSION['fname'] = $fname;
         header('location: index.php');
   	
+    }
   }
-}
 }
 
 // LOGIN USER
-if (isset($_POST["login"]) && $_POST['role']!= NULL) {
+if (isset($_POST["login"])) {
     $fname = mysqli_real_escape_string($db, $_POST['fname']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
     $role = mysqli_real_escape_string($db, $_POST['role']);
