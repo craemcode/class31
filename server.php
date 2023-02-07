@@ -15,7 +15,7 @@ $password_hash=NULL;
 
 
 // REGISTER USER
-if (isset($_POST["register"])) {
+if (isset($_POST["register"]) && $_POST['role']!= NULL) {
   // receive all input values from the form
   $fname = mysqli_real_escape_string($db, $_POST['fname']);
   $lname = mysqli_real_escape_string($db, $_POST['lname']);
@@ -86,7 +86,7 @@ if (isset($_POST["register"])) {
 }
 
 // LOGIN USER
-if (isset($_POST["login"])) {
+if (isset($_POST["login"]) && $_POST['role']!= NULL) {
     $fname = mysqli_real_escape_string($db, $_POST['fname']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
     $role = mysqli_real_escape_string($db, $_POST['role']);
@@ -106,7 +106,12 @@ if (isset($_POST["login"])) {
         $query = "SELECT * FROM students WHERE fname='$fname'";
         $result = mysqli_query($db, $query);
         $user = mysqli_fetch_assoc($result);
-        $password_hash = $user['password'];
+        if($user != NULL){
+          
+          $password_hash = $user['password'];
+        }else{array_push($errors, "Please choose the right role or register");
+          break;
+        }
 
         if (password_verify($password,$password_hash)){   
     
@@ -122,7 +127,13 @@ if (isset($_POST["login"])) {
         $query = "SELECT * FROM teachers WHERE fname='$fname'";
         $result = mysqli_query($db, $query);
         $user = mysqli_fetch_assoc($result);
-        $password_hash = $user['password'];
+        if($user != NULL){
+          
+          $password_hash = $user['password'];
+        }else{array_push($errors, "Please choose the right role or register");
+          break;
+        }
+        
 
         if (password_verify($password,$password_hash)){   
     
